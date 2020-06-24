@@ -1,5 +1,16 @@
 let imagemInicial
-let imagemCenario
+
+let imagemCenario1
+let imagemCenario2
+let imagemCenario3
+let imagemCenario4
+let imagemCenario5
+let imagemCenario6
+let imagemCenario7
+let imagemCenario8
+let imagemCenario9
+let imagemCenario10
+
 let imagemPersonagem
 let imagemInimigo
 let imagemGameOver
@@ -29,7 +40,18 @@ const matrizGotinha = [
 
 function preload() {
   imagemInicial = loadImage('imagens/assets/telaInicial.png')
-  imagemCenario = loadImage('imagens/cenario/floresta.png')
+
+  imagemCenario1 = loadImage('imagens/cenario/01_Mist.png')
+  imagemCenario2 = loadImage('imagens/cenario/02_Bushes.png')
+  imagemCenario3 = loadImage('imagens/cenario/03_Particles.png')
+  imagemCenario4 = loadImage('imagens/cenario/04_Forest.png')
+  imagemCenario5 = loadImage('imagens/cenario/05_Particles.png')
+  imagemCenario6 = loadImage('imagens/cenario/06_Forest.png')
+  imagemCenario7 = loadImage('imagens/cenario/07_Forest.png')
+  imagemCenario8 = loadImage('imagens/cenario/08_Forest.png')
+  imagemCenario9 = loadImage('imagens/cenario/09_Forest.png')
+  imagemCenario10 = loadImage('imagens/cenario/10_Sky.png')
+
   imagemPersonagem = loadImage('imagens/personagem/correndo.png')
   imagemGotinha = loadImage('imagens/inimigos/gotinha.png')
   imagemGameOver = loadImage('imagens/assets/game-over.png')
@@ -39,7 +61,19 @@ function preload() {
 
 function setup() {
   createCanvas(960, 540)
-  cenario = new Cenario(imagemCenario, 3)
+
+  cenario1 = new Cenario(imagemCenario1, 8)
+  cenario2 = new Cenario(imagemCenario2, 6)
+  cenario3 = new Cenario(imagemCenario3, 6)
+  cenario4 = new Cenario(imagemCenario4, 5)
+  cenario5 = new Cenario(imagemCenario5, 4)
+  cenario6 = new Cenario(imagemCenario6, 3)
+  cenario7 = new Cenario(imagemCenario7, 2)
+  cenario8 = new Cenario(imagemCenario8, 1.5)
+  cenario9 = new Cenario(imagemCenario9, 1)
+  cenario10 = new Cenario(imagemCenario10, 0)
+
+
   personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 110, 135, 220, 270)
   gotinha = new Inimigo(matrizGotinha, imagemGotinha, width - 50, 52, 52, 104, 104)
   frameRate(40)
@@ -55,15 +89,42 @@ function keyPressed() {
 }
 
 function draw() {
-  cenario.exibe()
-  cenario.move()
-  
+  cenario10.exibe()
+  cenario10.move()
+
+  cenario9.exibe()
+  cenario9.move()
+
+  cenario8.exibe()
+  cenario8.move()
+
+  cenario7.exibe()
+  cenario7.move()
+
+  cenario6.exibe()
+  cenario6.move()
+
+  cenario5.exibe()
+  cenario5.move()
+
+  cenario4.exibe()
+  cenario4.move()
+
+  cenario3.exibe()
+  cenario3.move()
+
+  cenario2.exibe()
+  cenario2.move()
+
   personagem.exibe()
   personagem.aplicaGravidade()
   if(personagem.y == personagem.yInicial) count = 0
 
   gotinha.exibe()
   gotinha.move()
+
+  cenario1.exibe()
+  cenario1.move()
 
   if(personagem.estaColidindo(gotinha)) {
     noLoop()
