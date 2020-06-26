@@ -61,7 +61,6 @@ function preload() {
 
   for(let i = 0; i < 10; i++) {
     imagemCenario[i] = loadImage(`imagens/cenario/camada_${i}.png`)
-    console.log(`imagens/cenario/${i}.png`)
   }
 
   imagemPersonagem = loadImage('imagens/personagem/correndo.png')
@@ -84,9 +83,9 @@ function setup() {
 
   personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 30, 110, 135, 220, 270)
 
-  const gotinha = new Inimigo(matrizGotinha, imagemGotinha, width - 50, 30, 52, 52, 104, 104, 10, 200, 0.7)
-  const troll = new Inimigo(matrizTroll, imagemTroll, width * 2, 0, 200, 200, 400, 400, 9, 1500, 0.3)
-  const voadora = new Inimigo(matrizVoadora, imagemVoadora, width - 200, 200, 100, 75, 200, 150, 10, 2500, 0.7)
+  const gotinha = new Inimigo(matrizGotinha, imagemGotinha, width - 50, 30, 52, 52, 104, 104, 10, 200)
+  const troll = new Inimigo(matrizTroll, imagemTroll, width * 2, 0, 200, 200, 400, 400, 9, 1500)
+  const voadora = new Inimigo(matrizVoadora, imagemVoadora, width - 200, 200, 100, 75, 200, 150, 10, 2500)
   inimigos.push(gotinha)
   inimigos.push(troll)
   inimigos.push(voadora)

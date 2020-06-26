@@ -25,11 +25,11 @@ class Personagem extends Animacao{
   }
 
   estaColidindo(inimigo) {
+    const precisao = 0.7 * this.largura
+    const precisaoInimigo = 0.6 * inimigo.largura
 
-    const colisao = collideRectRect(this.x, this.y, this.largura * inimigo.precisao, 
-                                    this.altura * inimigo.precisao,
-                                    inimigo.x, inimigo.y, inimigo.largura * inimigo.precisao, 
-                                    inimigo.altura * inimigo.precisao)
+    const colisao = collideCircleCircle(this.x + this.largura/2, this.y + this.altura/2, precisao, 
+                                        inimigo.x + inimigo.largura/2, inimigo.y + inimigo.altura/2, precisaoInimigo)
 
     return colisao
   }
