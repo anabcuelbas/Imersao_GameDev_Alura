@@ -1,21 +1,20 @@
 let imagemInicial
+let imagemGameOver
+let pontuacao
 
-let imagemCenario1
-let imagemCenario2
-let imagemCenario3
-let imagemCenario4
-let imagemCenario5
-let imagemCenario6
-let imagemCenario7
-let imagemCenario8
-let imagemCenario9
-let imagemCenario10
+const imagemCenario = []
 
 let imagemPersonagem
-let imagemInimigo
-let imagemGameOver
-let cenario
+let imagemGotinha
+let imagemTroll
+let imagemVoadora
+
 let personagem
+const inimigos = []
+
+const cenario = []
+const parallax = [8, 6, 6, 5, 4, 3, 2, 1.5, 1, 0]
+
 let somDoJogo
 let somDoPulo
 
@@ -38,23 +37,38 @@ const matrizGotinha = [
   [0, 626], [104, 626], [208, 626], [312, 626],
 ]
 
+const matrizTroll = [
+  [0,0], [400,0], [800,0], [1200,0], [1600,0],
+  [0,400], [400,400], [800,400], [1200, 400], [1600, 400],
+  [0,800], [400, 800], [800, 800], [1200, 800], [1600, 800],
+  [0, 1200], [400, 1200], [800, 1200], [1200, 1200], [1600, 1200], 
+  [0, 1600], [400, 1600], [800, 1600], [1200, 1600], [1600, 1600],
+  [0, 2000], [400, 2000], [800, 2000],
+]
+
+const matrizVoadora = [
+  [0,0], [200, 0], [400, 0],
+  [0, 150], [200, 150], [400, 150],
+  [0, 300], [200, 300], [400, 300],
+  [0, 450], [200, 450], [400, 450],
+  [0, 600], [200, 600], [400, 600],
+  [0, 750],
+]
+
 function preload() {
   imagemInicial = loadImage('imagens/assets/telaInicial.png')
+  imagemGameOver = loadImage('imagens/assets/game-over.png')
 
-  imagemCenario1 = loadImage('imagens/cenario/01_Mist.png')
-  imagemCenario2 = loadImage('imagens/cenario/02_Bushes.png')
-  imagemCenario3 = loadImage('imagens/cenario/03_Particles.png')
-  imagemCenario4 = loadImage('imagens/cenario/04_Forest.png')
-  imagemCenario5 = loadImage('imagens/cenario/05_Particles.png')
-  imagemCenario6 = loadImage('imagens/cenario/06_Forest.png')
-  imagemCenario7 = loadImage('imagens/cenario/07_Forest.png')
-  imagemCenario8 = loadImage('imagens/cenario/08_Forest.png')
-  imagemCenario9 = loadImage('imagens/cenario/09_Forest.png')
-  imagemCenario10 = loadImage('imagens/cenario/10_Sky.png')
+  for(let i = 0; i < 10; i++) {
+    imagemCenario[i] = loadImage(`imagens/cenario/camada_${i}.png`)
+    console.log(`imagens/cenario/${i}.png`)
+  }
 
   imagemPersonagem = loadImage('imagens/personagem/correndo.png')
   imagemGotinha = loadImage('imagens/inimigos/gotinha.png')
-  imagemGameOver = loadImage('imagens/assets/game-over.png')
+  imagemTroll = loadImage('imagens/inimigos/troll.png')
+  imagemVoadora = loadImage('imagens/inimigos/gotinha-voadora.png')
+  
   somDoJogo = loadSound('sons/trilha_jogo.mp3')
   somDoPulo = loadSound('sons/somPulo.mp3')
 }
@@ -62,20 +76,21 @@ function preload() {
 function setup() {
   createCanvas(960, 540)
 
-  cenario1 = new Cenario(imagemCenario1, 8)
-  cenario2 = new Cenario(imagemCenario2, 6)
-  cenario3 = new Cenario(imagemCenario3, 6)
-  cenario4 = new Cenario(imagemCenario4, 5)
-  cenario5 = new Cenario(imagemCenario5, 4)
-  cenario6 = new Cenario(imagemCenario6, 3)
-  cenario7 = new Cenario(imagemCenario7, 2)
-  cenario8 = new Cenario(imagemCenario8, 1.5)
-  cenario9 = new Cenario(imagemCenario9, 1)
-  cenario10 = new Cenario(imagemCenario10, 0)
+  pontuacao = new Pontuacao()
 
+  for(let i = 0; i < 10; i++) {
+    cenario[i] = new Cenario(imagemCenario[i], parallax[i])
+  }
 
-  personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 110, 135, 220, 270)
-  gotinha = new Inimigo(matrizGotinha, imagemGotinha, width - 50, 52, 52, 104, 104)
+  personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 30, 110, 135, 220, 270)
+
+  const gotinha = new Inimigo(matrizGotinha, imagemGotinha, width - 50, 30, 52, 52, 104, 104, 10, 200, 0.7)
+  const troll = new Inimigo(matrizTroll, imagemTroll, width * 2, 0, 200, 200, 400, 400, 9, 1500, 0.3)
+  const voadora = new Inimigo(matrizVoadora, imagemVoadora, width - 200, 200, 100, 75, 200, 150, 10, 2500, 0.7)
+  inimigos.push(gotinha)
+  inimigos.push(troll)
+  inimigos.push(voadora)
+
   frameRate(40)
   somDoJogo.loop()
 }
@@ -89,45 +104,31 @@ function keyPressed() {
 }
 
 function draw() {
-  cenario10.exibe()
-  cenario10.move()
 
-  cenario9.exibe()
-  cenario9.move()
-
-  cenario8.exibe()
-  cenario8.move()
-
-  cenario7.exibe()
-  cenario7.move()
-
-  cenario6.exibe()
-  cenario6.move()
-
-  cenario5.exibe()
-  cenario5.move()
-
-  cenario4.exibe()
-  cenario4.move()
-
-  cenario3.exibe()
-  cenario3.move()
-
-  cenario2.exibe()
-  cenario2.move()
+  for(let i = 9; i > 1; i--) {
+    cenario[i].exibe()
+    cenario[i].move()
+  }
 
   personagem.exibe()
   personagem.aplicaGravidade()
   if(personagem.y == personagem.yInicial) count = 0
 
-  gotinha.exibe()
-  gotinha.move()
+  inimigos.forEach(inimigo => {
+    inimigo.exibe()
+    inimigo.move()
 
-  cenario1.exibe()
-  cenario1.move()
+    if(personagem.estaColidindo(inimigo)) {
+      noLoop()
+      image(imagemGameOver, width/2 - 206, height/2 - 39)
+    }
+  })
 
-  if(personagem.estaColidindo(gotinha)) {
-    noLoop()
-    image(imagemGameOver, width/2 - 206, height/2 - 39)
+  for(let i = 1; i >= 0; i--) {
+    cenario[i].exibe()
+    cenario[i].move()
   }
+
+  pontuacao.exibe()
+  pontuacao.adicionarPonto()
 }
