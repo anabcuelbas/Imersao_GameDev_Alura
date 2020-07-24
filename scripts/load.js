@@ -1,4 +1,7 @@
 function preload() {
+
+    fonteInicial = loadFont('imagens/assets/fonteTelaInicial.otf')
+
     imagemInicial = loadImage('imagens/assets/telaInicial.png')
     imagemGameOver = loadImage('imagens/assets/game-over.png')
   

@@ -1,25 +1,26 @@
+let personagem
+let pontuacao
+let jogo
+let somDoJogo
+let somDoPulo
+let count = 0
+let cenaAtual = 'telaInicial'
+let cenas
+let telaInicial
+let fonteInicial
+let botaoGerenciador
+
 let imagemInicial
 let imagemGameOver
-let pontuacao
-
-const imagemCenario = []
-
 let imagemPersonagem
 let imagemGotinha
 let imagemTroll
 let imagemVoadora
 
-let personagem
 const inimigos = []
-
+const imagemCenario = []
 const cenario = []
 const parallax = [8, 6, 6, 5, 4, 3, 2, 1.5, 1, 0]
-
-let somDoJogo
-let somDoPulo
-
-let count = 0
-let inimigoAtual = 0
 
 const matrizPersonagem = [
   [0, 0], [220, 0], [440, 0], [660, 0],
