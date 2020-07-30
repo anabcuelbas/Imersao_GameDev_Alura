@@ -9,9 +9,11 @@ let cenas
 let telaInicial
 let fonteInicial
 let botaoGerenciador
+let vida
 
 let imagemInicial
 let imagemGameOver
+let imagemVida
 let imagemPersonagem
 let imagemGotinha
 let imagemTroll

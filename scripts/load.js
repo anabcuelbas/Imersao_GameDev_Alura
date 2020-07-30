@@ -4,6 +4,7 @@ function preload() {
 
     imagemInicial = loadImage('imagens/assets/telaInicial.png')
     imagemGameOver = loadImage('imagens/assets/game-over.png')
+    imagemVida = loadImage('imagens/assets/coracao.png')
   
     for(let i = 0; i < 10; i++) {
       imagemCenario[i] = loadImage(`imagens/cenario/camada_${i}.png`)
