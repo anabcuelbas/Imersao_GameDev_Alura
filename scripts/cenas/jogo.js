@@ -5,7 +5,7 @@ class Jogo {
 
     setup() {
         pontuacao = new Pontuacao()
-        vida = new Vida(3, 3)
+        vida = new Vida(leitorJson.vida.vidaMaxima, leitorJson.vida.vidaInicial)
 
         for(let i = 0; i < 10; i++) {
             cenario[i] = new Cenario(imagemCenario[i], parallax[i])
@@ -56,7 +56,8 @@ class Jogo {
 
             if(this.inimigoAtual > inimigos.length - 1) this.inimigoAtual = 0
 
-            inimigo.velocidade = parseInt(random(10, 30))
+            inimigo.velocidade = parseInt(random(leitorJson.velocidadeInimigo.velocidadeMinima, 
+                                                    leitorJson.velocidadeInimigo.velocidadeMaxima))
         }
 
         if(personagem.estaColidindo(inimigo)) {

@@ -1,0 +1,10 @@
+{
+    "vida": {
+        "vidaMaxima": 3,
+        "vidaInicial": 3
+    },
+    "velocidadeInimigo": {
+        "velocidadeMinima": 10,
+        "velocidadeMaxima": 50
+    }
+}

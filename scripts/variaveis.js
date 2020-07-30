@@ -1,3 +1,5 @@
+let leitorJson
+
 let personagem
 let pontuacao
 let jogo
