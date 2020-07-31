@@ -18,8 +18,8 @@ function keyPressed() {
   jogo.keyPressed(key)
 }
 
-function mouseClicked() {
-  jogo.mouseClicked()
+function mousePressed() {
+  jogo.mousePressed()
 }
 
 function draw() {

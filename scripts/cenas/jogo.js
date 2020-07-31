@@ -29,7 +29,7 @@ class Jogo {
         }
     }
 
-    mouseClicked() {
+    mousePressed() {
         if(count <= 1) {
             personagem.pula()
             somDoPulo.play()
