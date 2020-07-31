@@ -22,7 +22,15 @@ class Jogo {
     }
 
     keyPressed(key) {
-        if(key == 'ArrowUp' && count <= 1) {
+        if((key == 'ArrowUp' || key == " ") && count <= 1) {
+            personagem.pula()
+            somDoPulo.play()
+            count++
+        }
+    }
+
+    mouseClicked() {
+        if(count <= 1) {
             personagem.pula()
             somDoPulo.play()
             count++
